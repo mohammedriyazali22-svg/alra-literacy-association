@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALRA Literacy Association | Educating Telangana</title>
+    
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        /* --- CSS STYLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #333; scroll-behavior: smooth; background: #fff; }
+        .container { max-width: 1200px; margin: auto; padding: 0 20px; }
+        .hidden { display: none !important; }
+        .section-padding { padding: 80px 0; }
+        .text-center { text-align: center; }
+        .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 30px; color: #0056b3; font-weight: 700; }
+        .lead-text { font-size: 1.1rem; color: #555; max-width: 950px; margin: auto; }
+        .bg-light { background: #f4f7f6; }
+
+        /* Navigation */
+        header { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo img { height: 55px; width: 55px; border-radius: 50%; object-fit: cover; }
+        .main-title { font-weight: 700; font-size: 1.4rem; color: #0056b3; line-height: 1; display: block; }
+        .sub-title { font-size: 0.75rem; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links { display: flex; list-style: none; gap: 20px; align-items: center; }
+        .nav-links a { text-decoration: none; color: #333; font-weight: 600; font-size: 0.9rem; cursor: pointer; }
+        .admin-btn { background: #0056b3; color: #fff !important; padding: 8px 15px; border-radius: 5px; }
+
+        /* Dropdown */
+        .dropdown { position: relative; }
+        .dropdown-menu { display: none; position: absolute; top: 100%; background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); list-style: none; padding: 10px; min-width: 200px; border-radius: 4px; z-index: 100; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu li a { padding: 8px; display: block; font-size: 0.85rem; border-bottom: 1px solid #eee; }
+
+        /* Hero */
+        .hero { height: 85vh; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://i.postimg.cc/wMZRYg6p/ala-1.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; padding: 0 20px; }
+        .hero h1 { font-size: 2.8rem; max-width: 850px; margin-bottom: 20px; font-weight: 700; }
+        .btn-fill { background: #28a745; color: white; padding: 12px 28px; text-decoration: none; border-radius: 5px; font-weight: 600; display: inline-block; cursor: pointer; border: none; }
+        .btn-outline { border: 2px solid white; color: white; padding: 12px 28px; text-decoration: none; border-radius: 5px; font-weight: 600; margin-left: 10px; display: inline-block; }
+
+        /* Impact Stats */
+        .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); background: #0056b3; color: white; padding: 40px 5%; text-align: center; }
+        .impact-item h3 { font-size: 2.5rem; margin-bottom: 5px; font-weight: 700; }
+
+        /* Cards and Grids */
+        .grid-3, .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
+        .card { background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 5px solid #0056b3; height: 100%; }
+        .card h3 { margin-bottom: 15px; color: #0056b3; font-weight: 700; }
+
+        /* Agenda */
+        .agenda-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 30px; }
+        .agenda-item { background: #fff; padding: 18px; border-left: 5px solid #28a745; box-shadow: 0 2px 8px rgba(0,0,0,0.05); display: flex; align-items: center; font-weight: 600; }
+        .agenda-item span { background: #28a745; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0; }
+
+        /* Support Section */
+        .support-card h4 { color: #28a745; margin-bottom: 10px; font-weight: 700; border-bottom: 1px solid #f0f0f0; padding-bottom: 5px; }
+        .support-card ul { list-style: none; font-size: 0.9rem; }
+        .support-card li::before { content: "✔ "; color: #28a745; font-weight: bold; }
+
+        /* Team */
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 30px; }
+        .team-member { background: #fff; padding: 20px; border: 1px solid #eee; border-radius: 8px; text-align: center; }
+        .team-member strong { display: block; color: #0056b3; font-size: 1.1rem; }
+
+        /* Gallery */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 30px; }
+        .gallery-grid img { width: 100%; height: 210px; object-fit: cover; border-radius: 8px; }
+
+        /* Footer */
+        footer { background: #1a1a1a; color: #fff; padding: 60px 5% 30px; }
+        .social-icons { margin-top: 25px; display: flex; gap: 20px; }
+        .social-icons a { color: #fff; font-size: 1.7rem; transition: 0.3s; }
+        .social-icons a:hover { color: #28a745; transform: translateY(-5px); }
+
+        /* Admin Dashboard Styles */
+        #admin-panel { display: flex; min-height: 100vh; background: #f4f4f4; }
+        .sidebar { width: 260px; background: #2c3e50; color: white; padding: 30px; }
+        .sidebar p { margin: 15px 0; cursor: pointer; opacity: 0.8; }
+        .dash-content { flex: 1; padding: 40px; overflow-y: auto; }
+        .dash-card { background: white; padding: 25px; border-radius: 8px; margin-bottom: 25px; }
+        .dash-card input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; }
+        .admin-gallery-item { display: inline-block; margin: 10px; text-align: center; }
+        .admin-gallery-item img { width: 80px; height: 80px; object-fit: cover; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <div id="site-wrapper">
+        <!-- HEADER -->
+        <header>
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="https://i.postimg.cc/YqNtHt2x/alra-litrecy-association-logo.jpg" alt="ALRA logo">
+                    <div class="logo-text">
+                        <span class="main-title">ALRA</span>
+                        <span class="sub-title">Literacy Association</span>
+                    </div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#programs">Programs</a></li>
+                    <li class="dropdown">
+                        <a href="#">Partners ▾</a>
+                        <ul class="dropdown-menu" id="nav-partners-list"></ul>
+                    </li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a onclick="showAdminLogin()" class="admin-btn">Admin Login</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- HERO -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Educating, Empowering, and Uplifting the Next Generation</h1>
+                <p>Dedicated to enhancing education in Telangana through community learning and skill development for youth and underserved communities.</p>
+                <div class="hero-btns">
+                    <a href="#programs" class="btn-fill">View Our Programs</a>
+                    <a href="#contact" class="btn-outline">Become a Partner</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- IMPACT STATS -->
+        <section class="impact-grid" id="impact-display"></section>
+
+        <!-- BELIEF -->
+        <section class="section-padding">
+            <div class="container">
+                <h2 class="section-title">🌱 Our Belief</h2>
+                <p class="text-center lead-text">We believe that education is the foundation of a strong, confident, and progressive society. Every student deserves the opportunity to learn, grow, and succeed, regardless of background or financial condition.</p>
+            </div>
+        </section>
+
+        <!-- ABOUT US -->
+        <section id="about" class="bg-light section-padding">
+            <div class="container">
+                <h2 class="section-title">About ALRA Literacy Association</h2>
+                <p class="text-center lead-text">Established on 04-November-2025, ALRA is a registered non-profit organization under the Government of Telangana (Societies Registration Act 2001).</p>
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>📘 Our Mission</h3>
+                        <p>To provide foundational learning support that strengthens core skills in literacy, numeracy, and critical thinking. We strive to bridge learning gaps by offering personalized guidance and mentoring.</p>
+                    </div>
+                    <div class="card">
+                        <h3>🌍 Our Vision</h3>
+                        <p>We aim to expand our initiatives across Telangana, reaching every government school to support underserved students.</p>
+                    </div>
+                    <div class="card">
+                        <h3>📚 Educational Approach</h3>
+                        <p>Working hand-in-hand skills practice across Govt institutions & community.</p>
+                    </div>
+                </div>
+                <div class="agenda-container" style="margin-top:60px;">
+                    <h3 class="text-center">🎯 Our Core Agenda</h3>
+                    <div class="agenda-grid">
+                        <div class="agenda-item"><span>1</span> Free Community-Based Education</div>
+                        <div class="agenda-item"><span>2</span> Spoken English & Communication Skills</div>
+                        <div class="agenda-item"><span>3</span> Personality & Life Skills Development</div>
+                        <div class="agenda-item"><span>4</span> Digital Literacy & Awareness</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARTNERSHIPS & SUPPORT -->
+        <section class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Partnerships & Support We Need</h2>
+                <div class="grid-container">
+                    <div class="card support-card">
+                        <h4>💰 Financial Support</h4>
+                        <ul><li>Stipends for community projects</li><li>Fund workshops and educational programs</li><li>Support students during emergencies</li></ul>
+                    </div>
+                    <div class="card support-card">
+                        <h4>📚 Tools & Learning Materials</h4>
+                        <ul><li>Books and study materials</li><li>Software and digital tools</li><li>Other learning resources for students</li></ul>
+                    </div>
+                    <div class="card support-card">
+                        <h4>🏫 Institutional Partnerships</h4>
+                        <ul><li>Joint programs and workshops</li><li>Sharing educational resources</li><li>Skill development training</li></ul>
+                    </div>
+                    <div class="card support-card">
+                        <h4>🏢 Corporate Collaborations</h4>
+                        <ul><li>Industry exposure and internships</li><li>Skill development programs</li><li>Live projects partnerships</li></ul>
+                    </div>
+                </div>
+                <div class="card" style="margin-top:40px; background:#e8f5e9; border-top: 5px solid #28a745;">
+                    <h3>🌱 Why Partnership Matters to ALRA</h3>
+                    <p>Partnerships help us strengthen community-based learning, improve education quality, and ensure sustainability. Our students get hands-on projects, internships, and mentorship.</p>
+                </div>
+                <div class="text-center" style="margin-top:40px;">
+                    <h3>🤝 Let’s Build the Future Together</h3>
+                    <p>Your support today can change a student’s life forever.</p><br>
+                    <a href="#contact" class="btn-fill">Join Us as a Partner</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROGRAMS -->
+        <section id="programs" class="bg-light section-padding">
+            <div class="container">
+                <h2 class="section-title">What We Do</h2>
+                <div class="grid-container">
+                    <div class="card">
+                        <h3>Free Academic Support</h3>
+                        <p>Mentoring for government school students and Students from Underserved Communities.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Spoken English</h3>
+                        <p>Interactive sessions to improve fluency and vocabulary.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Digital Literacy</h3>
+                        <p>Teaching basic computer skills and online safety.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Personality Development</h3>
+                        <p>Workshops on Leadership Skills, Confidence Building, Public Speaking, Team Work & Discipline.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEADERSHIP -->
+        <section id="leadership" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Our Leadership Team</h2>
+                <div class="team-grid">
+                    <div class="team-member"><strong>Mohammed Imtiyaz Ali</strong><span>President</span></div>
+                    <div class="team-member"><strong>Mohammed Samad</strong><span>General Secretary</span></div>
+                    <div class="team-member"><strong>Mohammed Riyaz Ali</strong><span>Treasurer</span></div>
+                    <div class="team-member"><strong>Muneeba Ali</strong><span>Joint secretary (Regional Programme Director)</span></div>
+                    <div class="team-member"><strong>Mohammed Rizwan</strong><span>Education Literacy Director</span></div>
+                    <div class="team-member"><strong>Shaik Karim</strong><span>Project Manager</span></div>
+                    <div class="team-member"><strong>Rouf Rihan</strong><span>Project Manager</span></div>
+                    <div class="team-member"><strong>Mariya Anjum</strong><span>Trainer</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALLERY -->
+        <section id="gallery" class="bg-light section-padding">
+            <div class="container">
+                <h2 class="section-title">Gallery</h2>
+                <div class="gallery-grid" id="public-gallery"></div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer id="contact">
+            <div class="container">
+                <div class="footer-flex">
+                    <div class="footer-info">
+                        <h3>Contact Us</h3>
+                        <p>📍 Haneefa Masjid St, Site-3, Borabanda, Hyderabad, 500045</p>
+                        <p>📧 alralitreacyassociation@gmail.com</p>
+                        <p>📧 muneeba@alralitreacyassociation.com</p>
+                        <p>📧 rizwan@alralitreacyassociation.com</p>
+                        <p>📞 9963271491, 7569054943</p>
+                        <div class="social-icons">
+                            <a href="https://www.instagram.com/alra_literacy_association?igsh=MXJiY2lhbzZ1dWtmeQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/share/1CzJ1LkaGc/" target="_blank"><i class="fab fa-facebook"></i></a>
+                            <a href="https://www.linkedin.com/in/alra-literacy-association-b83215396?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://x.com/AlraLiteracy" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-legal">
+                        <p>Registered under Govt. of Telangana, Act 2001</p>
+                        <p>&copy; 2026 ALRA Literacy Association.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ADMIN LOGIN -->
+    <div id="admin-login-wrap" class="hidden" style="height:100vh; background:#eceff1; display:flex; align-items:center; justify-content:center;">
+        <div class="dash-card" style="width:350px;">
+            <h2 class="text-center">Admin Login</h2>
+            <input type="text" id="adminUser" placeholder="Username">
+            <input type="password" id="adminPass" placeholder="Password">
+            <button class="btn-fill" style="width:100%;" onclick="attemptLogin()">Login</button>
+            <p class="text-center" style="margin-top:10px; cursor:pointer;" onclick="location.reload()">Back</p>
+        </div>
+    </div>
+
+    <!-- ADMIN DASHBOARD -->
+    <div id="admin-panel" class="hidden">
+        <div class="sidebar">
+            <h3>ALRA Dashboard</h3>
+            <p onclick="location.reload()" style="color:#ff7675; font-weight:bold; margin-top:50px;">🚪 Logout</p>
+        </div>
+        <div class="dash-content">
+            <div class="dash-card">
+                <h3>🖼️ Gallery Manager</h3>
+                <input type="file" id="galFile" accept="image/*" onchange="uploadImage(event)">
+                <input type="text" id="galUrl" placeholder="Or Paste Image URL">
+                <button class="btn-fill" onclick="addImgUrl()">Add URL Image</button>
+                <div id="admin-gallery-list" style="margin-top:20px;"></div>
+            </div>
+            <div class="dash-card">
+                <h3>📊 Update Stats</h3>
+                <label>Students:</label><input type="text" id="edit-students">
+                <button class="btn-fill" onclick="updateStats()">Save Stats</button>
+            </div>
+            <div class="dash-card">
+                <h3>🤝 Manage Partners</h3>
+                <input type="text" id="p-name" placeholder="Partner Name">
+                <input type="text" id="p-url" placeholder="Partner URL">
+                <button class="btn-fill" onclick="addPartner()">Add Partner</button>
+                <div id="admin-partners-list" style="margin-top:15px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- DATABASE ---
+        // Updated to remove Given.do and set Give.do as the default
+        let partners = JSON.parse(localStorage.getItem('alra_p')) || [
+            { name: "Give.do", url: "https://give.do/ngos/alra-literacy-association" }
+        ];
+        
+        // Safety check to remove Given.do if it exists in a user's local storage from before
+        partners = partners.filter(p => p.name !== "Given.do");
+
+        let stats = JSON.parse(localStorage.getItem('alra_s')) || { students: "270+", conf: "95%", schools: "2" };
+        let gallery = JSON.parse(localStorage.getItem('alra_g')) || [
+            "https://i.postimg.cc/wMZRYg6p/ala-1.jpg", "https://i.postimg.cc/W16wRWyv/ala-2.jpg", "https://i.postimg.cc/K8NBpKKk/ala-3.jpg",
+            "https://i.postimg.cc/xj3fzLBL/ala-4.jpg", "https://i.postimg.cc/y8ksttxF/ala-5.jpg", "https://i.postimg.cc/T1J32bvw/ala-6.jpg"
+        ];
+
+        function loadData() {
+            document.getElementById('nav-partners-list').innerHTML = partners.map(p => `<li><a href="${p.url}" target="_blank">${p.name}</a></li>`).join('');
+            document.getElementById('impact-display').innerHTML = `
+                <div class="impact-item"><h3>${stats.students}</h3><p>Students Benefited</p></div>
+                <div class="impact-item"><h3>${stats.conf}</h3><p>Confidence Boost</p></div>
+                <div class="impact-item"><h3>${stats.schools}</h3><p>Active Schools</p></div>
+                <div class="impact-item"><h3>100%</h3><p>Transparency</p></div>`;
+            document.getElementById('public-gallery').innerHTML = gallery.map(img => `<img src="${img}">`).join('');
+            document.getElementById('edit-students').value = stats.students;
+        }
+
+        function showAdminLogin() { document.getElementById('site-wrapper').classList.add('hidden'); document.getElementById('admin-login-wrap').classList.remove('hidden'); }
+        function attemptLogin() {
+            if(document.getElementById('adminUser').value.toLowerCase() === "mohammed riyaz ali" && document.getElementById('adminPass').value === "alra@litrecy786") {
+                document.getElementById('admin-login-wrap').classList.add('hidden'); document.getElementById('admin-panel').classList.remove('hidden');
+                renderAdmin();
+            } else { alert("Wrong Credentials"); }
+        }
+
+        function renderAdmin() {
+            document.getElementById('admin-gallery-list').innerHTML = gallery.map((img, i) => `<div class="admin-gallery-item"><img src="${img}"><br><button class="del-btn" onclick="delImg(${i})">Delete</button></div>`).join('');
+            document.getElementById('admin-partners-list').innerHTML = partners.map((p, i) => `<div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>${p.name}</span><button class="del-btn" onclick="delP(${i})">Delete</button></div>`).join('');
+        }
+
+        function uploadImage(e) {
+            const reader = new FileReader();
+            reader.onload = function() { gallery.push(reader.result); save(); renderAdmin(); };
+            reader.readAsDataURL(e.target.files[0]);
+        }
+        function addImgUrl() { const u = document.getElementById('galUrl').value; if(u) { gallery.push(u); save(); renderAdmin(); document.getElementById('galUrl').value = ''; } }
+        function delImg(i) { gallery.splice(i, 1); save(); renderAdmin(); }
+        function addPartner() { const n = document.getElementById('p-name').value; const u = document.getElementById('p-url').value; if(n && u) { partners.push({name:n, url:u}); save(); renderAdmin(); } }
+        function delP(i) { partners.splice(i, 1); save(); renderAdmin(); }
+        function updateStats() { stats.students = document.getElementById('edit-students').value; save(); alert("Stats Saved"); }
+
+        function save() {
+            localStorage.setItem('alra_p', JSON.stringify(partners));
+            localStorage.setItem('alra_s', JSON.stringify(stats));
+            localStorage.setItem('alra_g', JSON.stringify(gallery));
+            loadData();
+        }
+
+        loadData();
+    </script>
+</body>
+</html>
